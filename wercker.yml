@@ -3,7 +3,7 @@ box: golang
 dev:
   steps:
     - setup-go-workspace:
-        package-dir: github.com/bclougherty/cloudnativego-exercises/hello
+        package-dir: github.com/bclougherty/cloudnativego-exercises
 
     - script:
         name: env
@@ -25,7 +25,7 @@ dev:
 build:
   steps:
     - setup-go-workspace:
-        package-dir: github.com/bclougherty/cloudnativego-exercises/hello
+        package-dir: github.com/bclougherty/cloudnativego-exercises
 
     - script:
         name: env
@@ -62,10 +62,10 @@ deploy:
     - internal/docker-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
-        cmd: /pipeline/source/hello
+        cmd: /pipeline/source/cloudnativego
         port: "8080"
         tag: latest
-        repository: bclougherty/cloudnativego-hello
+        repository: bclougherty/cloudnativego
         registry: https://registry.hub.docker.com
 
     - cng/cf-deploy:
@@ -75,4 +75,4 @@ deploy:
         org: $ORG
         space: $SPACE
         appname: wercker-step-hello
-        docker_image: bclougherty/cloudnativego-hello
+        docker_image: bclougherty/cloudnativego
